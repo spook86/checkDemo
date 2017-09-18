@@ -9,7 +9,7 @@ function validate(id){
 		};
 		this.id = id;
 		// 是否可提交
-		this.isSub = true;
+		this.isSub = false;
 		this.init()
 	};
 	// {realname:name,huodongid:hdid,phonenumber:mobile,company:company,from:from,career:post}
@@ -102,14 +102,17 @@ function validate(id){
 	};
 	// 验证表单是否可提交
 	validate.prototype.checkSub = function(){
-		var _this = this;
+		var _this = this,subHeader = true;
 		var checkDom = $('[data-ipt]');
 		for (var i = 0; i < checkDom.length; i++) {
-			if($(checkDom[i]).attr('check-static') == 'error'){
-				this.isSub = false
+			if($(checkDom[i]).attr('check-static') == 'error' || $(checkDom[i]).attr('check-static') == undefined){
+				subHeader = false
+			}else{
+				this.isSub = true;
 			}
 		};
-		if(this.isSub){
+		
+		if(this.isSub && subHeader){
 			_this.subAjax()
 		}
 	};
@@ -144,5 +147,6 @@ function validate(id){
 			_this.checkSub();
 		})
 	};
+
 
 	
