@@ -105,7 +105,8 @@ function validate(id){
 		var _this = this,subHeader = true;
 		var checkDom = $('[data-ipt]');
 		for (var i = 0; i < checkDom.length; i++) {
-			if($(checkDom[i]).attr('check-static') == 'error' || $(checkDom[i]).attr('check-static') == undefined){
+			var domStatic = $(checkDom[i]).attr('check-static');
+			if(domStatic == 'error' || domStatic == undefined){
 				subHeader = false
 			}else{
 				this.isSub = true;
